@@ -1,11 +1,31 @@
 import os
-from statistics import mean
+from statistics import mean, stdev
 os.system("cls")
 
-print("Grill 1:")
-num = [int(line) for line in open('Grill_1.txt', 'r')]
-min_num, max_num, mean_num = min(num), max(num), mean(num)
-print("Min: ", min_num)
-print("Max: ", max_num)
-print("Mean:", mean_num)
-print("Standard Deviation of temps is: ", mean_num-min_num)
+i = 1
+while i < 6:
+    print(f"Grill {i}:")
+    num = [int(line) for line in open(f"Grill_{i}.txt", "r")]
+    min_num, max_num, mean_num, stdev_num = min(num), max(num), mean(num), stdev(num)
+
+    #High: 358
+    #Low: 342
+
+    print("Min: ", min_num)
+    print("Max: ", max_num)
+    print("Mean:", mean_num)
+    print("Standard Deviation of temps is: ", stdev_num)
+
+    if min_num <= 342 and max_num >= 358:
+        print('''Too Hot and Too Cold: Fail!
+        ''')
+    elif min_num <= 342:
+        print('''Too Cold: Fail!
+        ''') 
+    elif max_num >= 358:
+        print('''Too Hot: Fail!
+        ''')
+    else:
+        print('''Pass!
+        ''')
+    i += 1
